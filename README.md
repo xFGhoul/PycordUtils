@@ -19,26 +19,30 @@ Requires pycord[voice] so make sure you have all dependencies of it installed.
 
 # Example code
 
-### Pycord.Pagination.AutoEmbedPaginator
+### PycordUtils.Pagination.AutoEmbedPaginator
 ```python
+import PycordUtils
+
 @bot.command()
 async def paginate(ctx):
     embed1 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 1")
     embed2 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 2")
     embed3 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 3")
-    paginator = DiscordUtils.Pagination.AutoEmbedPaginator(ctx)
+    paginator = PycordUtils.Pagination.AutoEmbedPaginator(ctx)
     embeds = [embed1, embed2, embed3]
     await paginator.run(embeds)
 ```
 
-### Pycord.Pagination.CustomEmbedPaginator
+### PycordUtils.Pagination.CustomEmbedPaginator
 ```python
+import PycordUtils
+
 @bot.command()
 async def paginate(ctx):
     embed1 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 1")
     embed2 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 2")
     embed3 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 3")
-    paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx)
+    paginator = PycordUtils.Pagination.CustomEmbedPaginator(ctx)
     paginator.add_reaction('⏮️', "first")
     paginator.add_reaction('⏪', "back")
     paginator.add_reaction('🔐', "lock")
@@ -48,16 +52,16 @@ async def paginate(ctx):
     await paginator.run(embeds)
 ```
 
-### Pycord.InviteTracker
+### PycordUtils.InviteTracker
 ```python
 import discord
 from discord.ext import commands
-import DiscordUtils
+import PycordUtils
 
 intents = discord.intents.default()
 intents.members = True
 bot = commands.AutoShardedBot(command_prefix="-", intents=intents)
-tracker = DiscordUtils.InviteTracker(bot)
+tracker = PycordUtils.InviteTracker(bot)
 
 @bot.event
 async def on_member_join(member):
@@ -68,10 +72,10 @@ async def on_member_join(member):
 ```python
 import discord
 from discord.ext import commands
-import DiscordUtils
+import PycordUtils
 
 bot = commands.AutoShardedBot(command_prefix=">")
-music = DiscordUtils.Music()
+music = PycordUtils.Music()
 
 @bot.command()
 async def join(ctx):
@@ -173,6 +177,6 @@ For further information please read the docs
 
 
 # Support
-**__Please make sure that you are on the latest version of [PycordUtils](https://pypi.org/project/DiscordUtils) and [youtube_dl](https://pypi.org/project/youtube_dl) before contacting for support__**
+**__Please make sure that you are on the latest version of [PycordUtils](https://pypi.org/project/PycordUtils) and [youtube_dl](https://pypi.org/project/youtube_dl) before contacting for support__**
 
 DM/PM `Ghoul#6066` on Discord for support

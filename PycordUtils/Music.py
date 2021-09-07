@@ -39,7 +39,7 @@ async def ytbettersearch(query):
 
 async def get_video_data(url, search, bettersearch, loop):
     if not has_voice:
-        raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+        raise RuntimeError("PycordUtils[voice] install needed in order to use voice")
 
     if not search and not bettersearch:
         data = await loop.run_in_executor(None, lambda: ydl.extract_info(url, download=False))
@@ -94,7 +94,7 @@ async def get_video_data(url, search, bettersearch, loop):
         
 def check_queue(ctx, opts, music, after, on_play, loop):
     if not has_voice:
-        raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+        raise RuntimeError("PycordUtils[voice] install needed in order to use voice")
 
     try:
         song = music.queue[ctx.guild.id][0]
@@ -121,7 +121,7 @@ def check_queue(ctx, opts, music, after, on_play, loop):
 class Music(object):
     def __init__(self):
         if not has_voice:
-            raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+            raise RuntimeError("PycordUtils[voice] install needed in order to use voice")
 
         self.queue = {}
         self.players = []
@@ -149,7 +149,7 @@ class Music(object):
 class MusicPlayer(object):
     def __init__(self, ctx, music, **kwargs):
         if not has_voice:
-            raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+            raise RuntimeError("PycordUtils[voice] install needed in order to use voice")
 
         self.ctx = ctx
         self.voice = ctx.voice_client
