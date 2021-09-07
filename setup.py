@@ -19,6 +19,6 @@ setuptools.setup(
     ],
     python_requires=">= 3.6",
     include_package_data=True,
-    install_requires=["pycord"],
-    extras_require={"voice": ["pycord[voice]", "youtube-dl"]}
+    install_requires=["py-cord"],
+    extras_require={"voice": ["py-cord[voice]", "youtube-dl"]}
 )

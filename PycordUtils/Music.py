@@ -54,7 +54,7 @@ async def get_video_data(url, search, bettersearch, loop):
         thumbnail = data["thumbnail"]
         channel = data["uploader"]
         channel_url = data["uploader_url"]
-        return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
+        return Song(source, url, title, description, likes, dislikes, views, duration, thumbnail, channel, channel_url, False)
     else:
         if bettersearch:
             url = await ytbettersearch(url)
@@ -166,32 +166,44 @@ class MusicPlayer(object):
             self.ffmpeg_opts = {"options": "-vn", "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 0 -nostdin"}
         else:
             self.ffmpeg_opts = {"options": "-vn", "before_options": "-nostdin"}
+            
     def disable(self):
         self.music.players.remove(self)
+
     def on_queue(self, func):
         self.on_queue_func = func
+
     def on_play(self, func):
         self.on_play_func = func
+
     def on_skip(self, func):
         self.on_skip_func = func
+
     def on_stop(self, func):
         self.on_stop_func = func
+
     def on_pause(self, func):
         self.on_pause_func = func
+
     def on_resume(self, func):
         self.on_resume_func = func
+
     def on_loop_toggle(self, func):
         self.on_loop_toggle_func = func
+
     def on_volume_change(self, func):
         self.on_volume_change_func = func
+
     def on_remove_from_queue(self, func):
         self.on_remove_from_queue_func = func
+
     async def queue(self, url, search=False, bettersearch=False):
         song = await get_video_data(url, search, bettersearch, self.loop)
         self.music.queue[self.ctx.guild.id].append(song)
         if self.on_queue_func:
             await self.on_queue_func(self.ctx, song)
         return song
+
     async def play(self):
         source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(self.music.queue[self.ctx.guild.id][0].source, **self.ffmpeg_opts))
         self.voice.play(source, after=lambda error: self.after_func(self.ctx, self.ffmpeg_opts, self.music, self.after_func, self.on_play_func, self.loop))
@@ -199,6 +211,7 @@ class MusicPlayer(object):
         if self.on_play_func:
             await self.on_play_func(self.ctx, song)
         return song
+
     async def skip(self, force=False):
         if len(self.music.queue[self.ctx.guild.id]) == 0:
             raise NotPlaying("Cannot loop because nothing is being played")
@@ -216,7 +229,8 @@ class MusicPlayer(object):
             except IndexError:
                 if self.on_skip_func:
                     await self.on_skip_func(self.ctx, old)
-                return old        
+                return old  
+
     async def stop(self):
         try:
             self.music.queue[self.ctx.guild.id] = []
@@ -226,6 +240,7 @@ class MusicPlayer(object):
             raise NotPlaying("Cannot loop because nothing is being played")
         if self.on_stop_func:
             await self.on_stop_func(self.ctx)
+
     async def pause(self):
         try:
             self.voice.pause()
@@ -235,6 +250,7 @@ class MusicPlayer(object):
         if self.on_pause_func:
             await self.on_pause_func(self.ctx, song)
         return song
+
     async def resume(self):
         try:
             self.voice.resume()
@@ -244,16 +260,19 @@ class MusicPlayer(object):
         if self.on_resume_func:
             await self.on_resume_func(self.ctx, song)
         return song
+
     def current_queue(self):
         try:
             return self.music.queue[self.ctx.guild.id]
         except KeyError:
             raise EmptyQueue("Queue is empty")
+
     def now_playing(self):
         try:
             return self.music.queue[self.ctx.guild.id][0]
         except:
             return None
+
     async def toggle_song_loop(self):
         try:
             song = self.music.queue[self.ctx.guild.id][0]
@@ -266,6 +285,7 @@ class MusicPlayer(object):
         if self.on_loop_toggle_func:
             await self.on_loop_toggle_func(self.ctx, song)
         return song
+
     async def change_volume(self, vol):
         self.voice.source.volume = vol
         try:
@@ -275,6 +295,7 @@ class MusicPlayer(object):
         if self.on_volume_change_func:
             await self.on_volume_change_func(self.ctx, song, vol)
         return (song, vol)
+
     async def remove_from_queue(self, index):
         if index == 0:
             try:
@@ -288,6 +309,7 @@ class MusicPlayer(object):
         if self.on_remove_from_queue_func:
             await self.on_remove_from_queue_func(self.ctx, song)
         return song
+
     def delete(self):
         self.music.players.remove(self)
         

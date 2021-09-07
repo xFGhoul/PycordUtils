@@ -15,7 +15,7 @@ or, instead use the following for access to Music functions aswell
 ```
 pip install PycordUtils[voice]
 ```
-Requires pycord[voice] so make sure you have all dependencies of it installed.
+Requires py-cord[voice] so make sure you have all dependencies of it installed.
 
 # Example code
 
@@ -160,21 +160,11 @@ async def remove(ctx, index):
 
 For further information please read the docs
 
-# TODO
+# Links
 
-- Documentation
-- API Utility
-- AntiSpam Utility
-- Counting Utility
-- Giveaway Utility
-- Logging Wrapper (using [Rich](https://github.com/willmcgugan/rich))
-- Add Database Support (ORM Support)
-- Examples
-- Pull Request Template
+**[Documentation](https://ghoul.gitbook.io/pycordutils/)**
 
-
-
-
+**[Discord](discord.gg/qPcknbjAmb)**
 
 # Support
 **__Please make sure that you are on the latest version of [PycordUtils](https://pypi.org/project/PycordUtils) and [youtube_dl](https://pypi.org/project/youtube_dl) before contacting for support__**
