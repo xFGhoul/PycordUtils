@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8", errors="ignore") as fh:
 
 setuptools.setup(
     name="PycordUtils",
-    version="0.0.1",
+    version="0.0.2",
     author="Ghoul",
     description="A Useful Utility Library made to be used with pycord",
     long_description=long_description,

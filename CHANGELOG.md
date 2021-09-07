@@ -6,7 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.1] - 2012-09-6
+## [0.0.2] - 9-7-2021
+
+### Changed
+
+- `pycord` => `py-cord`
+- Minimal Code Cleanup
+
+## [0.0.1] - 9-6-2021
 
 ### Added
 
