@@ -48,13 +48,12 @@ async def get_video_data(url, search, bettersearch, loop):
         title = data["title"]
         description = data["description"]
         likes = data["like_count"]
-        dislikes = data["dislike_count"]
         views = data["view_count"]
         duration = data["duration"]
         thumbnail = data["thumbnail"]
         channel = data["uploader"]
         channel_url = data["uploader_url"]
-        return Song(source, url, title, description, likes, dislikes, views, duration, thumbnail, channel, channel_url, False)
+        return Song(source, url, title, description, likes, views, duration, thumbnail, channel, channel_url, False)
     else:
         if bettersearch:
             url = await ytbettersearch(url)
@@ -64,7 +63,6 @@ async def get_video_data(url, search, bettersearch, loop):
             title = data["title"]
             description = data["description"]
             likes = data["like_count"]
-            dislikes = data["dislike_count"]
             views = data["view_count"]
             duration = data["duration"]
             thumbnail = data["thumbnail"]
@@ -84,7 +82,6 @@ async def get_video_data(url, search, bettersearch, loop):
             title = data["title"]
             description = data["description"]
             likes = data["like_count"]
-            dislikes = data["dislike_count"]
             views = data["view_count"]
             duration = data["duration"]
             thumbnail = data["thumbnail"]
